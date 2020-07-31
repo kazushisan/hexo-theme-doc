@@ -16,7 +16,7 @@ class SearchForm extends React.Component {
       return;
     }
 
-    if (query.length < 3) { return; }
+    // if (query.length < 3) { return; }
 
     const results = this.props.search(query);
 
@@ -36,6 +36,11 @@ class SearchForm extends React.Component {
         <input type="search"
           className="dc-input dc-search-form__input doc-search-form__input"
           placeholder="Search..."
+          onKeyDown={(e) => {
+            if (e.keyCode === '13') {
+              this.handleKeyUp.bind(this);
+            }
+          }}
           onKeyUp={this.handleKeyUp.bind(this)}
           autoFocus={this.props.autoFocus} />
         <button className="dc-btn dc-search-form__btn doc-search-form__btn" aria-label="Search">
